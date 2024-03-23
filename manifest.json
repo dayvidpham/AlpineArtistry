@@ -4,9 +4,12 @@
   "version": "0.1",
   "description": "Wreak artistic madness onto all the webpages of your liking",
   "permissions": [
-    "tabs"
+    "tabs",
+    "activeTab",
+    "scripting"
 
   ],
+  "action": {},
   "host_permissions": ["<all_urls>"],
   "icons": {
     "16": "assets/images/AlpineArtistryLogo16.png",
@@ -16,6 +19,7 @@
   },
   
   "background": {
-    "service_worker": "background/background.js"
+    "service_worker": "background/background.js",
+    "type": "module"
   }
 }
