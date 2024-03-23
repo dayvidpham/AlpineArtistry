@@ -9,7 +9,7 @@
       {
         "id": "ruleset_1",
         "enabled": false,
-        "path": "rules/rule-catifier-example.json"
+        "path": "rules/rules-catifier-example.json"
       }
     ]
   },
