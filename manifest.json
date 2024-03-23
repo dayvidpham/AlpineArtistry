@@ -8,7 +8,7 @@
     "rule_resources": [
       {
         "id": "ruleset_1",
-        "enabled": false,
+        "enabled": true,
         "path": "rules/rules-catifier-example.json"
       }
     ]
