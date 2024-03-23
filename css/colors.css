@@ -1,10 +1,10 @@
 
 * {
-    /* display: none!important; */
-    background-color: #FFE4E1;
+    /* TODO: get these from a pop up UI and store/use as variables */
+    background-color: black;
     color: blue;
-    /* background-color: #FFE4E1; */
-    /* :#FFE4E1 */
+    font: "Comic Sans"
+    
   }
   
   
