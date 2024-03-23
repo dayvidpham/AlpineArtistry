@@ -1,8 +1,10 @@
 {
+  "manifest_version": 3,
   "name": "AlpineArtistry",
   "version": "0.1",
   "description": "Wreak artistic madness onto all the webpages of your liking",
   "permissions": [
+    "tabs"
 
   ],
   "host_permissions": ["<all_urls>"],
@@ -12,5 +14,8 @@
     "48": "assets/images/AlpineArtistryLogo48.png",
     "128": "assets/images/AlpineArtistryLogo128.png"
   },
-  "manifest_version": 3
+  
+  "background": {
+    "service_worker": "background/background.js"
+  }
 }
