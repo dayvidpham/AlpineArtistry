@@ -3,8 +3,17 @@
   "version": "0.1",
   "description": "Wreak artistic madness onto all the webpages of your liking",
   "permissions": [
-
+    "offscreen",
+    "idle",
+    "scripting",
+    "tabs",
+    "activeTab"
   ],
+  "action": {},
+  "background": {
+    "service_worker": "sound-effect/sound-effect.js",
+    "type": "module"
+  },
   "host_permissions": ["<all_urls>"],
   "icons": {
     "16": "assets/images/AlpineArtistryLogo16.png",
