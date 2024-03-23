@@ -1,0 +1,17 @@
+{
+  "name": "AlpineArtistry",
+  "version": "0.1",
+  "description": "Wreak artistic madness onto all the webpages of your liking",
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": ["<all_urls>"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": false,
+        "path": "rules/rule-catifier-example.json"
+      }
+    ]
+  },
+  "manifest_version": 3
+}
