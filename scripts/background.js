@@ -52,6 +52,17 @@ let pageStyle = {
     
 }
 
+function showImage (event) {
+    const image = document.createElement('img');
+    image.src = chrome.runtime.getURL('assets/images/Pusheen_the_Cat.png');
+    image.style.position = 'fixed';
+    image.style.left = `${event.clientX}px`;
+    image.style.top = `${event.clientY}px`;
+    image.style.width = '100px';
+    image.style.height = 'auto';
+    document.body.appendChild(image);
+}
+
 function applyStyle(pageStyle) {
     const { font, color, bgColor } = pageStyle;
     chrome.tabs.query(
@@ -68,6 +79,11 @@ function applyStyle(pageStyle) {
                 }`,
                 target: { tabId: tab.id }
             })
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                func: function() { document.body.addEventListener("click", showImage, true) }
+            })
+
         })
     )
 };
@@ -81,7 +97,6 @@ chrome.webNavigation.onCommitted.addListener((details) => {
     }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
-
         // If you want to run only when the reload finished (at least the DOM was loaded)
         chrome.webNavigation.onCompleted.addListener(function onComplete() {
             chrome.webNavigation.onCompleted.removeListener(onComplete);
@@ -155,9 +170,11 @@ chrome.idle.onStateChanged.addListener(function(state) {
 //     document.body.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg")';
 // }
 
+
+
 const changeBG = function (imgSrc) {
-        document.body.style.backgroundImage = chrome.runtime.getURL(imgSrc);
-    }
+    document.body.style.backgroundImage = chrome.runtime.getURL(imgSrc);
+}
 
 // chrome.action.onClicked.addListener((tab) => {
 //     const catSrc = "/assets/images/cat-nyan-cat.gif";
@@ -206,16 +223,7 @@ chrome.action.onClicked.addListener((tab) => {
 // });
 
 //================= add image under cursor on click =================
-const showImage = function showImage (imageUrl) {
-    const image = document.createElement('img');
-    image.src = imageUrl;
-    image.style.position = 'fixed';
-    image.style.left = `${event.clientX}px`;
-    image.style.top = `${event.clientY}px`;
-    image.style.width = '100px';
-    image.style.height = 'auto';
-    document.body.appendChild(image);
-}
+
 
 // document.addEventListener('click', ()=>{
 //     const imageUrl = 'assets/images/Pusheen_the_Cat.png';
@@ -232,12 +240,12 @@ const showImage = function showImage (imageUrl) {
 //     }
 // }
 
-chrome.action.onClicked.addListener((tab) => {
-    const imageUrl = 'assets/images/Pusheen_the_Cat.png';
-    chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        func: showImage,
-        args: [imageUrl]
-    })
-})
+// chrome.action.onClicked.addListener((tab) => {
+//     const imageUrl = chrome.runtime.getURL('assets/images/Pusheen_the_Cat.png');
+//     chrome.scripting.executeScript({
+//         target: { tabId: tab.id },
+//         func: showImage,
+//         args: [imageUrl]
+//     })
+// })
 
