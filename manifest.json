@@ -1,21 +1,27 @@
 {
-  "manifest_version": 3,
   "name": "AlpineArtistry",
   "version": "0.1",
   "description": "Wreak artistic madness onto all the webpages of your liking",
   "permissions": [
-    "tabs",
-    "activeTab",
+    "storage",
+    "offscreen",
+    "idle",
     "scripting",
-    "storage"
+    "tabs",
+    "webNavigation",
+    "activeTab"
   ],
-  "action": {},
-  "host_permissions": ["<all_urls>"],
-  "icons": {
-    "16": "assets/images/AlpineArtistryLogo16.png",
-    "32": "assets/images/AlpineArtistryLogo32.png",
-    "48": "assets/images/AlpineArtistryLogo48.png",
-    "128": "assets/images/AlpineArtistryLogo128.png"
+  "action": {
+      "default_icon": {
+        "16": "assets/images/AlpineArtistryLogo16.png",
+        "32": "assets/images/AlpineArtistryLogo32.png",
+        "48": "assets/images/AlpineArtistryLogo48.png",
+        "128": "assets/images/AlpineArtistryLogo128.png"
+      }
+    },
+  "background": {
+    "service_worker": "scripts/background.js",
+    "type": "module"
   },
   "web_accessible_resources": [
     {
@@ -23,8 +29,12 @@
       "matches": ["*://*/*"]
     }
   ],
-  "background": {
-    "service_worker": "cursor_script.js",
-    "type": "module"
-  }
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "assets/images/AlpineArtistryLogo16.png",
+    "32": "assets/images/AlpineArtistryLogo32.png",
+    "48": "assets/images/AlpineArtistryLogo48.png",
+    "128": "assets/images/AlpineArtistryLogo128.png"
+  },
+  "manifest_version": 3
 }
