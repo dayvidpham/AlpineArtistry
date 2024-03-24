@@ -3,6 +3,7 @@
   "version": "0.1",
   "description": "Wreak artistic madness onto all the webpages of your liking",
   "permissions": [
+    "storage",
     "offscreen",
     "idle",
     "scripting",

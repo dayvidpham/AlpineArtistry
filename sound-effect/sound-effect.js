@@ -1,19 +1,4 @@
-async function playAudio() {
-  if (!(await chrome.offscreen.hasDocument())) { // prevent double creation
-    await chrome.offscreen.createDocument({
-      url: "html/audio.html",
-      reasons: [chrome.offscreen.Reason.AUDIO_PLAYBACK],
-      justification: "play sound effects",
-    });
-  }
 
-  const audioMessage = {
-    target: "offscreen",
-    playAudio: { source: "sound-effect/anime-wow.mp3", volume: 1 }, // volume is 0 to 1
-  };
-  
-  await chrome.runtime.sendMessage(audioMessage);
-}
 
 // async function playSound(source = 'sound-effect/anime-wow.mp3', volume = 1) {
 //   await createOffscreen();
@@ -28,20 +13,18 @@ async function playAudio() {
 //       justification: 'testing'
 //   });
 // }
-// // async function createSoundHtml(){
-// //   if (chrome.offscreen.hasDocument()) return;
-// //   await chrome.offscreen.createDocument({
-// //     url: chrome.runtime.getURL('sound-effect/sound.html'),
-// //     reasons: ['AUDIO_PLAYBACK'],
-// //     justification: 'notification',
-// //   });
-// // }
+// async function createSoundHtml(){
+//   if (chrome.offscreen.hasDocument()) return;
+//   await chrome.offscreen.createDocument({
+//     url: chrome.runtime.getURL('sound-effect/sound.html'),
+//     reasons: ['AUDIO_PLAYBACK'],
+//     justification: 'notification',
+//   });
+// }
 
-// chrome.action.onClicked.addListener(tab => {
-//   playSound();
-// })
-
-
+chrome.action.onClicked.addListener(tab => {
+  playSound();
+})
 
 
 // function createSoundHtml(){
