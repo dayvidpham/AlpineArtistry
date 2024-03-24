@@ -71,6 +71,9 @@ applyStyle(pageStyle);
 
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
+    if (details.url.startswith("chrome")) {
+        return
+    }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
 
