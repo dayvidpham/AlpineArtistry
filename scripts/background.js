@@ -103,6 +103,10 @@ const appendCat = function (imgSrc) {
 
 chrome.action.onClicked.addListener((tab) => {
     const catSrc = "/assets/images/cat-nyan-cat.gif";
+    chrome.scripting.insertCSS({
+        target: { tabId: tab.id },
+        files: ["/css/cats.css"],
+    })
     chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: appendCat,
