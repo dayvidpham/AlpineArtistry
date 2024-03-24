@@ -18,6 +18,12 @@ async function createOffscreen() {
     });
 }
 
-chrome.action.onClicked.addListener((tab) => {
-    playSound();
-})
+chrome.idle.setDetectionInterval(15);
+
+chrome.idle.onStateChanged.addListener(function(state) {
+    if (state === "idle") {
+    //   setTimeout(function() {
+        playSound();
+    //   }, 10000); //60000 = 1 minute 
+    }
+  });
