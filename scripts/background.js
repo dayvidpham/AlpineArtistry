@@ -40,10 +40,13 @@
     
 //   });
 
+/////////////////////////////////////////////////////
+// Apply pageStyle to every page
+//
 // Global default
 let pageStyle = {
     enabled: true,
-    font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'), cursive`,
+    font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive`,
     color: "black",
     bgColor: "white",
     
@@ -57,7 +60,8 @@ function applyStyle(pageStyle) {
         },
         (tabs) => tabs.forEach(tab => {
             chrome.scripting.insertCSS({
-                css: `* {
+                css: `
+                * {
                     font: ${font};
                     color: ${color};
                     background-color: ${bgColor};
@@ -72,8 +76,8 @@ applyStyle(pageStyle);
 
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
-    if (details.url.startswith("chrome")) {
-        return
+    if (details.url.startsWith("chrome")) {
+        return;
     }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
@@ -85,6 +89,8 @@ chrome.webNavigation.onCommitted.addListener((details) => {
     }
 });
 
+///////////////////////////////////////////////
+// Cat animation
 const appendCat = function (imgSrc) {
     if (document.getElementById("cat") === null) {
         const cat = document.createElement("img");
@@ -136,4 +142,3 @@ chrome.idle.onStateChanged.addListener(function(state) {
     //   }, 10000); //60000 = 1 minute 
     }
   });
-
