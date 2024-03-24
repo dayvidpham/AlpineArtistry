@@ -40,12 +40,16 @@
     
 //   });
 
+/////////////////////////////////////////////////////
+// Apply pageStyle to every page
+//
 // Global default
 let pageStyle = {
     enabled: true,
-    font: "Comic Sans",
-    color: "white",
-    bgColor: "black",
+    font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive`,
+    color: "black",
+    bgColor: "white",
+    
 }
 
 //background audio
@@ -71,7 +75,8 @@ function applyStyle(pageStyle) {
         },
         (tabs) => tabs.forEach(tab => {
             chrome.scripting.insertCSS({
-                css: `* {
+                css: `
+                * {
                     font: ${font};
                     color: ${color};
                     background-color: ${bgColor};
@@ -86,8 +91,8 @@ applyStyle(pageStyle);
 
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
-    if (details.url.startswith("chrome")) {
-        return
+    if (details.url.startsWith("chrome")) {
+        return;
     }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
@@ -98,6 +103,28 @@ chrome.webNavigation.onCommitted.addListener((details) => {
         });
     }
 });
+
+///////////////////////////////////////////////
+// Cat animation
+const appendCat = function (imgSrc) {
+    if (document.getElementById("cat") === null) {
+        const cat = document.createElement("img");
+        cat.setAttribute("id", "cat");
+        cat.setAttribute("src", chrome.runtime.getURL(imgSrc));
+        //cat.src = chrome.runtime.getURL("./assets/images/cat-nyan-cat.gif");
+        document.body.appendChild(cat);
+    }
+}
+
+chrome.action.onClicked.addListener((tab) => {
+    const catSrc = "/assets/images/cat-nyan-cat.gif";
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: appendCat,
+        args: [catSrc]
+    })
+})
+
 
 //idle audio
 async function playSoundEffect(source = '/sound-effect/anime-wow.mp3', volume = 1, loop = false) {

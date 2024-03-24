@@ -18,7 +18,13 @@
         "48": "assets/images/AlpineArtistryLogo48.png",
         "128": "assets/images/AlpineArtistryLogo128.png"
       }
-    },
+  },
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["assets/images/cat-nyan-cat.gif"]
+    }
+  ],
   "background": {
     "service_worker": "scripts/background.js",
     "type": "module"
@@ -32,3 +38,4 @@
   },
   "manifest_version": 3
 }
+
