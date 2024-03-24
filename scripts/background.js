@@ -44,8 +44,9 @@
 let pageStyle = {
     enabled: true,
     font: "Comic Sans",
-    color: "white",
-    bgColor: "black",
+    color: "black",
+    bgColor: "white",
+    
 }
 
 function applyStyle(pageStyle) {
@@ -56,7 +57,8 @@ function applyStyle(pageStyle) {
             font: ${font};
             color: ${color};
             background-color: ${bgColor};
-        }`,
+        }
+        `,
         target: { tabId: tab.id }
     })))
 };
@@ -74,3 +76,14 @@ chrome.webNavigation.onCommitted.addListener((details) => {
         });
     }
 });
+
+chrome.action.onClicked.addListener((tab) => {
+    if (document.getElementById("cat") === null) {
+        const cat = document.createElement("img");
+        cat.setAttribute("id", "cat");
+        cat.setAttribute("src", chrome.runtime.getURL("chrome-extension://odblkedobmflicmcmjhceopbafgoikpj/assets/images/cat-nyan-cat.gif"));
+        //cat.src = chrome.runtime.getURL("./assets/images/cat-nyan-cat.gif");
+        document.body.appendChild(cat);
+    }
+})
+

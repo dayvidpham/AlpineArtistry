@@ -1,9 +1,32 @@
 
 * {
     /* TODO: get these from a pop up UI and store/use as variables */
-    background-color: black;
-    color: white;
+    /* background-color: black;
+    color: white; */
     font: "Comic Sans"
     
-}
+  }
 
+  @keyframes move {
+    from {
+      left: 0
+    } to {
+      left: 100%
+    }
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  .cat {
+    width: 100px;
+    height: 100px;
+    /* background: black; */
+    position: absolute;
+    left: 100%;
+    animation: 5s linear move;
+  }
+
+  
+  

@@ -28,5 +28,9 @@
         "128": "assets/images/AlpineArtistryLogo128.png"
       }
     },
+    "web_accessible_resources": [{
+        "matches": ["<all_urls>"],
+        "resources": ["assets/images/cat-nyan-cat.gif"]
+    }],
     "manifest_version": 3
 }
