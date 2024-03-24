@@ -157,9 +157,9 @@ chrome.idle.onStateChanged.addListener(function(state) {
     //   setTimeout(function() {
         playSoundEffect();
     //   }, 10000); //60000 = 1 minute 
-        // chrome.windows.create({
-        //     url: 'scripts/popup.html',
-        //     type: 'popup', width: 400, height: 400,
-        // });
+        chrome.windows.create({
+            url: chrome.runtime.getURL("/assets/images/angrycat.jpg"),
+            type: 'popup', width: 560, height: 400,
+        });
     }
   });
