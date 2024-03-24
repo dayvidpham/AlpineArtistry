@@ -3,30 +3,47 @@
 //     //registerCallbacks();
 // };
 
-// const defaultCursors = [
-//     ,
-//     "img/cat.png",
-//     "img/saber.png",
-// ];
-
-function changeCursor(cursor) {
-    const elems = document.body.getElementsByTagName("*");
-    for(const i of elems){
-        //i.style.cursor = "url('assets/images/among_us.png'), default";
-        i.style.cursor = "url('${cursor}'), default";
-    }
+function changeCursor(cursorUrl) {
+    const image = 
+    document.body.style.cursor = `'${chrome.runtime.getURL(cursor)}', default`;
+    console.error(document.body.style.cursor)
 }
 
 chrome.action.onClicked.addListener((tab) => {
     if(!tab.url.includes('chrome://')) {
-        const cursor = "https://cdn.custom-cursor.com/packs/3704/among-us-character-in-pikachu-skin-pack.png";
+        // const cursor = "https://cdn.custom-cursor.com/packs/3704/among-us-character-in-pikachu-skin-pack.png";
+        const cursor = "/assets/images/among_us.cur";
+
         chrome.scripting.executeScript({
             target: {tabId: tab.id},
+            // css: `
+            //     * {
+            //         cursor: url(/assets/images/among_us.cur), auto;
+            //     }
+            // `
             func: changeCursor,
             args: [cursor]
         });
+        // console.error(chrome.runtime.getURL(cursor))
     }
 });
+
+// function showImage (imageUrl) {
+//     const image = document.createElement('img');
+//     image.src = imageUrl;
+//     image.style.position = 'fixed';
+//     image.style.left = `${event.clientX}px`;
+//     image.style.top = `${event.clientY}px`;
+//     image.style.width = '100px';
+//     image.style.height = 'auto';
+//     document.body.appendChild(image);
+// }
+
+// document.addEventListener('click', ()=>{
+//     const imageUrl = 'assets/images/Pusheen_the_Cat.png';
+//     showImage(imageUrl);
+// })
+
 
 // function generateElements(){
 // chrome.storage.sync.get({

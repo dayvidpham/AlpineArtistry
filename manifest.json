@@ -17,9 +17,14 @@
     "48": "assets/images/AlpineArtistryLogo48.png",
     "128": "assets/images/AlpineArtistryLogo128.png"
   },
-  
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/images/*"],
+      "matches": ["*://*/*"]
+    }
+  ],
   "background": {
-    "service_worker": "background/background.js",
+    "service_worker": "cursor_script.js",
     "type": "module"
   }
 }
