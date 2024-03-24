@@ -54,9 +54,6 @@ let pageStyle = {
 async function applyStyle(pageStyle) {
     const { font, color, bgColor } = pageStyle;
     
-    let Newcolor = await chrome.storage.local.get(["color"]);
-    console.log(Newcolor)
-    console.error('inside applyStyle, color is' + Newcolor.color );
     chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
         chrome.scripting.insertCSS({
         css: `* {
