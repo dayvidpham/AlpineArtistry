@@ -4,8 +4,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
   });
   
-  function playAudio({ source, volume }) {
+function playAudio({ source, volume, loop }) {
     const audio = new Audio(source);
+    if(loop) {
+      audio.loop = "loop";
+    }
     audio.volume = volume;
     audio.play();
-  }
+}
