@@ -48,7 +48,7 @@ let pageStyle = {
     enabled: true,
     font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive`,
     color: "black",
-    bgColor: "white",
+    bgColor: "pink",
     
 }
 
@@ -157,5 +157,9 @@ chrome.idle.onStateChanged.addListener(function(state) {
     //   setTimeout(function() {
         playSoundEffect();
     //   }, 10000); //60000 = 1 minute 
+        chrome.windows.create({
+            url: chrome.runtime.getURL("/assets/images/angrycat.jpg"),
+            type: 'popup', width: 560, height: 400,
+        });
     }
   });
