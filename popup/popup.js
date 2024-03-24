@@ -1,7 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', documentEvents  , false);
 
+
+
 let colorValue;
+let colorBgValue;
+let fontValue;
+
 
 function documentEvents() {
     
