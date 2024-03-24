@@ -39,33 +39,37 @@
 //     }
     
 //   });
-    
-chrome.tabs.query({}, (tabs) => tabs.forEach( tab => 
-    chrome.scripting.insertCSS({
-    files: ['css/colors.css'],
-    target: { tabId: tab.id }
-})));
 
+// Global default
+let pageStyle = {
+    enabled: true,
+    font: "Comic Sans",
+    color: "white",
+    bgColor: "black",
+}
 
-function applyColor(){
-    chrome.tabs.query({}, (tabs) => tabs.forEach( tab => 
+function applyStyle(pageStyle) {
+    const { font, color, bgColor } = pageStyle;
+    chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
         chrome.scripting.insertCSS({
-        files: ['css/colors.css'],
+        css: `* {
+            font: ${font};
+            color: ${color};
+            background-color: ${bgColor};
+        }`,
         target: { tabId: tab.id }
     })))
 };
 
+applyStyle(pageStyle);
+
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
-
-        applyColor();
+        applyStyle(pageStyle);
 
         // If you want to run only when the reload finished (at least the DOM was loaded)
         chrome.webNavigation.onCompleted.addListener(function onComplete() {
-
-            codeAfterReloadAndFinishSomeLoading();
-
             chrome.webNavigation.onCompleted.removeListener(onComplete);
         });
     }
