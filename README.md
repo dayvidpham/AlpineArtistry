@@ -3,10 +3,10 @@ Mountain Madness 2024
 
 ## Members
 
-David Pham - dhpham@sfu.ca
-Amy Cao - caoamyc@sfu.ca
-Kelly Feng - kfa@sfu.ca
-Kelly Khuc - htk@sfu.ca
+1. David Pham - dhpham@sfu.ca  
+2. Amy Cao - caoamyc@sfu.ca  
+3. Kelly Feng - kfa@sfu.ca  
+4. Kelly Khuc - htk@sfu.ca  
 
 ## Setup and Run
 
