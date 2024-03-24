@@ -106,3 +106,64 @@ chrome.idle.onStateChanged.addListener(function(state) {
     //   }, 10000); //60000 = 1 minute 
     }
   });
+
+
+//=================== Change Background image =====================
+function changeBackgroundImage () {
+    //document.body.style.backgroundImage = `'${chrome.runtime.getURL(cursor)}', default`;
+    document.body.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg")';
+}
+
+chrome.action.onClicked.addListener((tab) => {
+    image = 'url("/assets/images/cat_image.jpg")';
+    if(!tab.url.includes('chrome://')) {
+        chrome.scripting.executeScript({
+            target: {tabId: tab.id},
+            func: changeBackgroundImage,
+            //args: [image]
+        });
+    }
+});
+
+//================== Change cursor Image ===================
+// function changeCursor(cursor) {
+//     document.body.style.cursor = `'${chrome.runtime.getURL(cursor)}', default`;
+//     console.error(document.body.style.cursor)
+// }
+
+// chrome.action.onClicked.addListener((tab) => {
+//     if(!tab.url.includes('chrome://')) {
+//         // const cursor = "https://cdn.custom-cursor.com/packs/3704/among-us-character-in-pikachu-skin-pack.png";
+//         const cursor = "/assets/images/among_us.cur";
+
+//         chrome.scripting.executeScript({
+//             target: {tabId: tab.id},
+//             // css: `
+//             //     * {
+//             //         cursor: url(/assets/images/among_us.cur), auto;
+//             //     }
+//             // `
+//             func: changeCursor,
+//             args: [cursor]
+//         });
+//         // console.error(chrome.runtime.getURL(cursor))
+//     }
+// });
+
+//================= add image under cursor on click =================
+// function showImage (imageUrl) {
+//     const image = document.createElement('img');
+//     image.src = imageUrl;
+//     image.style.position = 'fixed';
+//     image.style.left = `${event.clientX}px`;
+//     image.style.top = `${event.clientY}px`;
+//     image.style.width = '100px';
+//     image.style.height = 'auto';
+//     document.body.appendChild(image);
+// }
+
+// document.addEventListener('click', ()=>{
+//     const imageUrl = 'assets/images/Pusheen_the_Cat.png';
+//     showImage(imageUrl);
+// })
+
