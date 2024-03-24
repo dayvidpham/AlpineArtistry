@@ -144,21 +144,40 @@ chrome.idle.onStateChanged.addListener(function(state) {
   });
 
 
+
+//   
+
+
+
 //=================== Change Background image =====================
-function changeBackgroundImage () {
-    //document.body.style.backgroundImage = `'${chrome.runtime.getURL(cursor)}', default`;
-    document.body.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg")';
-}
+// function changeBackgroundImage () {
+//     //document.body.style.backgroundImage = `'${chrome.runtime.getURL(cursor)}', default`;
+//     document.body.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg")';
+// }
+
+const changeBG = function (imgSrc) {
+        document.body.style.backgroundImage = chrome.runtime.getURL(imgSrc);
+    }
+
+// chrome.action.onClicked.addListener((tab) => {
+//     const catSrc = "/assets/images/cat-nyan-cat.gif";
+//     chrome.scripting.executeScript({
+//         target: { tabId: tab.id },
+//         func: appendCat,
+//         args: [catSrc]
+//     })
+// })
 
 chrome.action.onClicked.addListener((tab) => {
-    image = 'url("/assets/images/cat_image.jpg")';
-    if(!tab.url.includes('chrome://')) {
-        chrome.scripting.executeScript({
-            target: {tabId: tab.id},
-            func: changeBackgroundImage,
-            //args: [image]
-        });
-    }
+    const imageSrc = "/assets/images/cat_image.jpg";
+    chrome.scripting.executeScript({
+        target: {tabId: tab.id},
+        func: changeBG,
+        args: [imageSrc]
+    });
+    // if(!tab.url.includes('chrome://')) {
+        
+    // }
 });
 
 //================== Change cursor Image ===================
@@ -187,19 +206,38 @@ chrome.action.onClicked.addListener((tab) => {
 // });
 
 //================= add image under cursor on click =================
-// function showImage (imageUrl) {
-//     const image = document.createElement('img');
-//     image.src = imageUrl;
-//     image.style.position = 'fixed';
-//     image.style.left = `${event.clientX}px`;
-//     image.style.top = `${event.clientY}px`;
-//     image.style.width = '100px';
-//     image.style.height = 'auto';
-//     document.body.appendChild(image);
-// }
+const showImage = function showImage (imageUrl) {
+    const image = document.createElement('img');
+    image.src = imageUrl;
+    image.style.position = 'fixed';
+    image.style.left = `${event.clientX}px`;
+    image.style.top = `${event.clientY}px`;
+    image.style.width = '100px';
+    image.style.height = 'auto';
+    document.body.appendChild(image);
+}
 
 // document.addEventListener('click', ()=>{
 //     const imageUrl = 'assets/images/Pusheen_the_Cat.png';
 //     showImage(imageUrl);
 // })
+
+// const appendCat = function (imgSrc) {
+//     if (document.getElementById("cat") === null) {
+//         const cat = document.createElement("img");
+//         cat.setAttribute("id", "cat");
+//         cat.setAttribute("src", chrome.runtime.getURL(imgSrc));
+//         //cat.src = chrome.runtime.getURL("./assets/images/cat-nyan-cat.gif");
+//         document.body.appendChild(cat);
+//     }
+// }
+
+chrome.action.onClicked.addListener((tab) => {
+    const imageUrl = 'assets/images/Pusheen_the_Cat.png';
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: showImage,
+        args: [imageUrl]
+    })
+})
 

@@ -9,8 +9,7 @@
     "scripting",
     "tabs",
     "webNavigation",
-    "activeTab",
-    "*://*/*"
+    "activeTab"
   ],
   "action": {
       "default_icon": {
