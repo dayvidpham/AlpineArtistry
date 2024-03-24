@@ -1,0 +1,34 @@
+<html>
+ <head>
+   <title>Config Popup</title>
+   <script src="./popup.js"></script>
+   <style>
+    body {
+      text-align: center;
+    }
+
+    #AlpineArtistryLogo128 {
+      width: 100px;
+      margin: 5px;
+    }
+
+    button {
+      margin: 5px;
+      outline: none;
+    }
+
+    button:hover {
+      outline: #80deea dotted thick;
+    }
+  </style>
+ </head>
+ <body>
+    <!-- TODO: logo not showing -->
+    <img src="./assets/images/AlpineArtistryLogo128.png" id="AlpineArtistryLogo128">
+    <select id="colorText">
+        <option value="black">black</option>
+        <option value="red">red</option>
+      </select>
+      <button id="colorButton" class="changeSelected">Change Selected</button>
+ </body>
+</html>
