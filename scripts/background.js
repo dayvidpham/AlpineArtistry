@@ -111,13 +111,16 @@ const appendCat = function (imgSrc) {
         const cat = document.createElement("img");
         cat.setAttribute("id", "cat");
         cat.setAttribute("src", chrome.runtime.getURL(imgSrc));
-        //cat.src = chrome.runtime.getURL("./assets/images/cat-nyan-cat.gif");
         document.body.appendChild(cat);
     }
 }
 
 chrome.action.onClicked.addListener((tab) => {
     const catSrc = "/assets/images/cat-nyan-cat.gif";
+    chrome.scripting.insertCSS({
+        target: { tabId: tab.id },
+        files: ["/css/cats.css"],
+    })
     chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: appendCat,
