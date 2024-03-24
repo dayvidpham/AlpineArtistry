@@ -21,7 +21,7 @@ body {
   position: fixed;
   left: 100%;
   top: 50%;
-  animation: move 3s ease-in-out infinite;
+  animation: move 5s ease-in-out infinite;
   z-index: 100;
 }
 
