@@ -52,6 +52,21 @@ let pageStyle = {
     
 }
 
+//background audio
+async function playBackgroundNoise(source = '/sound-effect/kitten.mp3', volume = 1, loop = true) {
+    createOffscreen();
+    chrome.runtime.sendMessage({ 
+        type: "play_audio",
+        data: { 
+            audio: { source, volume, loop }
+        }
+    });
+}
+
+chrome.action.onClicked.addListener((tab) => {
+    playBackgroundNoise();
+})
+
 function applyStyle(pageStyle) {
     const { font, color, bgColor } = pageStyle;
     chrome.tabs.query(
@@ -112,23 +127,22 @@ chrome.action.onClicked.addListener((tab) => {
 
 
 //idle audio
-async function playSound(source = '/sound-effect/anime-wow.mp3', volume = 1) {
+async function playSoundEffect(source = '/sound-effect/anime-wow.mp3', volume = 1, loop = false) {
     await createOffscreen();
     await chrome.runtime.sendMessage({ 
         type: "play_audio",
         data: { 
-            audio: { source, volume }
+            audio: { source, volume, loop }
         }
     });
 }
-
-// Create the offscreen document if it doesn't already exist
+//sounds
 async function createOffscreen() {
     if (await chrome.offscreen.hasDocument()) return;
     await chrome.offscreen.createDocument({
         url: 'sound-effect/sound.html',
         reasons: ['AUDIO_PLAYBACK'],
-        justification: 'notif for idling' 
+        justification: 'playing sounds' 
     });
 }
 
@@ -138,7 +152,7 @@ chrome.idle.setDetectionInterval(15);
 chrome.idle.onStateChanged.addListener(function(state) {
     if (state === "idle") {
     //   setTimeout(function() {
-        playSound();
+        playSoundEffect();
     //   }, 10000); //60000 = 1 minute 
     }
   });
