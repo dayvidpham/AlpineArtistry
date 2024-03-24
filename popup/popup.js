@@ -37,21 +37,21 @@ function documentEvents() {
         })))
     })
 
-    document.getElementById('fontText').addEventListener("change", function(event) {
-        fontValue = event.target.value;
+    // document.getElementById('fontText').addEventListener("change", function(event) {
+    //     fontValue = event.target.value;
         
-    });
+    // });
 
-    let fontButton = document.getElementById('fontButton')
-    fontButton.addEventListener("click", function(event) {
-        // alert(fontValue)
-        chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
-            chrome.scripting.insertCSS({
-            css: `* {
-                font: ${fontValue};
-            }
-            `,
-            target: { tabId: tab.id }
-        })))
-    })
+    // let fontButton = document.getElementById('fontButton')
+    // fontButton.addEventListener("click", function(event) {
+    //     alert(fontValue)
+    //     chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
+    //         chrome.scripting.insertCSS({
+    //         css: `* {
+    //             font: ${fontValue};
+    //         }
+    //         `,
+    //         target: { tabId: tab.id }
+    //     })))
+    // })
 }

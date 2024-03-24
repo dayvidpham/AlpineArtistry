@@ -58,7 +58,7 @@ async function applyStyle(pageStyle) {
         chrome.scripting.insertCSS({
         css: `* {
             font: ${font};
-            color: ${Newcolor.color};
+            color: ${color};
             background-color: ${bgColor};
         }
         `,
