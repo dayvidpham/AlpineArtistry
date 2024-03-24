@@ -1,54 +1,10 @@
-
-
-// async function playSound(source = 'sound-effect/anime-wow.mp3', volume = 1) {
-//   await createOffscreen();
-//   await chrome.runtime.sendMessage({ play: { source, volume } });
-// }
-
-// async function createOffscreen() {
-//   if (await chrome.offscreen.hasDocument()) return;
-//   await chrome.offscreen.createDocument({
-//       url: 'offscreen.html',
-//       reasons: ['AUDIO_PLAYBACK'],
-//       justification: 'testing'
-//   });
-// }
-// async function createSoundHtml(){
-//   if (chrome.offscreen.hasDocument()) return;
-//   await chrome.offscreen.createDocument({
-//     url: chrome.runtime.getURL('sound-effect/sound.html'),
-//     reasons: ['AUDIO_PLAYBACK'],
-//     justification: 'notification',
-//   });
-// }
-
-chrome.action.onClicked.addListener(tab => {
-  playSound();
-})
-
-
-// function createSoundHtml(){
-//   chrome.offscreen.createDocument({
-//     url: chrome.runtime.getURL('sound.html'),
-//     reasons: ['AUDIO_PLAYBACK'],
-//     justification: 'notification',
-// });
-// }
-// // chrome.action.onClicked.addListener((tab));
-// chrome.idle.setDetectionInterval(15);
-
-// chrome.idle.onStateChanged.addListener(function(state) {
-//   if (state === "idle") {
-//     setTimeout(function() {
-//       createSoundHtml();
-//     }, 10000); //60000 = 1 minute 
-//   }
-// });
-// // chrome.action.onClicked.addListener((tab) => {
-// //   main()
-// // })
-
-
+chrome.idle.onStateChanged.addListener(function(state) {
+  if (state === "idle") {
+    setTimeout(function() {
+      alert('Hurry up!')
+    }, 10000); //60000 = 1 minute 
+  }
+});
 
 // // const THRESHOLD = 3 * 1000;
 // // const GRACE_PERIOD = 10;
