@@ -12,7 +12,7 @@
   ],
   "action": {},
   "background": {
-    "service_worker": "sound-effect/sound-effect.js",
+    "service_worker": "background.js",
     "type": "module"
   },
   "host_permissions": ["<all_urls>"],

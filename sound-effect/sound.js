@@ -1,12 +1,11 @@
-// chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-//     if (message.playAudio && message.target === "offscreen") {
-//       playAudio(message.playAudio);
-//       sendResponse("Audio played");
-//     }
-//   });
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg.type === "play_audio") {
+      playAudio(msg.data.audio);
+    }
+  });
   
-//   function playAudio({ source, volume }) {
-//     const audio = new Audio(source);
-//     audio.volume = volume;
-//     audio.play();
-//   }c
+  function playAudio({ source, volume }) {
+    const audio = new Audio(source);
+    audio.volume = volume;
+    audio.play();
+  }
