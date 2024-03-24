@@ -1,0 +1,28 @@
+@keyframes move {
+  0% {
+    left: -5%
+  } 
+  50% {
+    left: 90%
+  }
+  100% {
+    left: -5%
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#cat {
+  width: 100px;
+  height: 100px;
+  background: none;
+  position: fixed;
+  left: 100%;
+  top: 50%;
+  animation: move 5s ease-in-out infinite;
+  z-index: 100;
+}
+
+

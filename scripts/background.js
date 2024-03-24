@@ -40,12 +40,13 @@
     
 //   });
 
-
-
+/////////////////////////////////////////////////////
+// Apply pageStyle to every page
+//
 // Global default
 let pageStyle = {
     enabled: true,
-    font: "Comic Sans",
+    font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive`,
     color: "black",
     bgColor: "pink",
     
@@ -53,26 +54,31 @@ let pageStyle = {
 
 async function applyStyle(pageStyle) {
     const { font, color, bgColor } = pageStyle;
-    
-    let Newcolor = await chrome.storage.local.get(["color"]);
-    console.log(Newcolor)
-    console.error('inside applyStyle, color is' + Newcolor.color );
-    chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
-        chrome.scripting.insertCSS({
-        css: `* {
-            font: ${font};
-            color: ${Newcolor.color};
-            background-color: ${bgColor};
-        }
-        `,
-        target: { tabId: tab.id }
-    })))
-};
+    chrome.tabs.query(
+        {
+            url: [ "*://*/*" ]
+        },
+        (tabs) => tabs.forEach(tab => {
+            chrome.scripting.insertCSS({
+                css: `* {
+                    font: ${font};
+                    color: ${color};
+                    background-color: ${bgColor};
+                }`,
+                target: { tabId: tab.id }
+            })
+        })
+    )
+}
+
 
 applyStyle(pageStyle);
 
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
+    if (details.url.startsWith("chrome")) {
+        return;
+    }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
 
@@ -82,3 +88,43 @@ chrome.webNavigation.onCommitted.addListener((details) => {
         });
     }
 });
+
+
+/////////////////////////////////////////////
+// AUDIO
+// 
+// idle audio
+async function playSoundEffect(source = '/sound-effect/anime-wow.mp3', volume = 1, loop = false) {
+    await createOffscreen();
+    await chrome.runtime.sendMessage({ 
+        type: "play_audio",
+        data: { 
+            audio: { source, volume, loop }
+        }
+    });
+}
+
+// sounds
+async function createOffscreen() {
+    if (await chrome.offscreen.hasDocument()) return;
+    await chrome.offscreen.createDocument({
+        url: 'sound-effect/sound.html',
+        reasons: ['AUDIO_PLAYBACK'],
+        justification: 'playing sounds' 
+    });
+}
+
+// idle detection: 15 seconds
+chrome.idle.setDetectionInterval(15);
+
+chrome.idle.onStateChanged.addListener(function(state) {
+    if (state === "idle") {
+    //   setTimeout(function() {
+        playSoundEffect();
+    //   }, 10000); //60000 = 1 minute 
+        chrome.windows.create({
+            url: chrome.runtime.getURL("/assets/images/angrycat.jpg"),
+            type: 'popup', width: 560, height: 400,
+        });
+    }
+  });
