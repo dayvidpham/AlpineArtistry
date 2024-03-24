@@ -14,10 +14,11 @@ async function createOffscreen() {
     await chrome.offscreen.createDocument({
         url: 'sound-effect/sound.html',
         reasons: ['AUDIO_PLAYBACK'],
-        justification: 'testing' // details for using the API
+        justification: 'notif for idling' 
     });
 }
 
+//15 seconds
 chrome.idle.setDetectionInterval(15);
 
 chrome.idle.onStateChanged.addListener(function(state) {
