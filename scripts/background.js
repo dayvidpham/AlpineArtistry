@@ -48,7 +48,7 @@ let pageStyle = {
     enabled: true,
     font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive`,
     color: "black",
-    bgColor: "white",
+    bgColor: "pink",
     
 }
 
@@ -154,5 +154,9 @@ chrome.idle.onStateChanged.addListener(function(state) {
     //   setTimeout(function() {
         playSoundEffect();
     //   }, 10000); //60000 = 1 minute 
+        // chrome.windows.create({
+        //     url: 'scripts/popup.html',
+        //     type: 'popup', width: 400, height: 400,
+        // });
     }
   });
