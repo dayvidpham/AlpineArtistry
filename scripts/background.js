@@ -50,21 +50,31 @@ let pageStyle = {
 
 function applyStyle(pageStyle) {
     const { font, color, bgColor } = pageStyle;
-    chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
-        chrome.scripting.insertCSS({
-        css: `* {
-            font: ${font};
-            color: ${color};
-            background-color: ${bgColor};
-        }`,
-        target: { tabId: tab.id }
-    })))
+    chrome.tabs.query(
+        {
+            url: [ "*://*/*" ]
+        }, 
+        (tabs) => tabs.forEach(tab => {
+            chrome.scripting.insertCSS({
+                css: `* {
+                    font: ${font};
+                    color: ${color};
+                    background-color: ${bgColor};
+                }`,
+                target: { tabId: tab.id }
+            })
+        })
+    )
 };
 
 applyStyle(pageStyle);
 
+
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
+    if (details.url.startsWith("chrome")) {
+        return;
+    }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
 
