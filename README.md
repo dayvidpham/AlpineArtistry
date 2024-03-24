@@ -11,7 +11,7 @@ Mountain Madness 2024
 ## Setup and Run
 
 1. Navigate to the following URL in Google Chrome: `chrome://extensions`
-2. Press the "Load unpacked" button
+2. Press the "Load unpacked" button near the top left
 3. Select this directory in the file selector window that opens
 4. Pin the extension onto your extension bar.
 5. Go to your favourite site.
