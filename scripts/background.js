@@ -51,22 +51,30 @@ let pageStyle = {
 
 function applyStyle(pageStyle) {
     const { font, color, bgColor } = pageStyle;
-    chrome.tabs.query({}, (tabs) => tabs.forEach(tab => 
-        chrome.scripting.insertCSS({
-        css: `* {
-            font: ${font};
-            color: ${color};
-            background-color: ${bgColor};
-        }
-        `,
-        target: { tabId: tab.id }
-    })))
+    chrome.tabs.query(
+        {
+            url: [ "*://*/*" ]
+        },
+        (tabs) => tabs.forEach(tab => {
+            chrome.scripting.insertCSS({
+                css: `* {
+                    font: ${font};
+                    color: ${color};
+                    background-color: ${bgColor};
+                }`,
+                target: { tabId: tab.id }
+            })
+        })
+    )
 };
 
 applyStyle(pageStyle);
 
 // --- On Reloading or Entering example.com --- 
 chrome.webNavigation.onCommitted.addListener((details) => {
+    if (details.url.startswith("chrome")) {
+        return
+    }
     if (["reload", "link", "typed", "generated"].includes(details.transitionType)) {
         applyStyle(pageStyle);
 
@@ -76,7 +84,6 @@ chrome.webNavigation.onCommitted.addListener((details) => {
         });
     }
 });
-
 
 const appendCat = function (imgSrc) {
     if (document.getElementById("cat") === null) {
@@ -96,4 +103,37 @@ chrome.action.onClicked.addListener((tab) => {
         args: [catSrc]
     })
 })
+
+
+//idle audio
+async function playSound(source = '/sound-effect/anime-wow.mp3', volume = 1) {
+    await createOffscreen();
+    await chrome.runtime.sendMessage({ 
+        type: "play_audio",
+        data: { 
+            audio: { source, volume }
+        }
+    });
+}
+
+// Create the offscreen document if it doesn't already exist
+async function createOffscreen() {
+    if (await chrome.offscreen.hasDocument()) return;
+    await chrome.offscreen.createDocument({
+        url: 'sound-effect/sound.html',
+        reasons: ['AUDIO_PLAYBACK'],
+        justification: 'notif for idling' 
+    });
+}
+
+//15 seconds
+chrome.idle.setDetectionInterval(15);
+
+chrome.idle.onStateChanged.addListener(function(state) {
+    if (state === "idle") {
+    //   setTimeout(function() {
+        playSound();
+    //   }, 10000); //60000 = 1 minute 
+    }
+  });
 
