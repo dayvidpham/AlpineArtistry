@@ -43,7 +43,7 @@
 // Global default
 let pageStyle = {
     enabled: true,
-    font: "Comic Sans",
+    font: `'Comic Sans MS', 'Comic Sans', 'Comic Neue', @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'), cursive`,
     color: "black",
     bgColor: "white",
     
@@ -77,13 +77,23 @@ chrome.webNavigation.onCommitted.addListener((details) => {
     }
 });
 
-chrome.action.onClicked.addListener((tab) => {
+
+const appendCat = function (imgSrc) {
     if (document.getElementById("cat") === null) {
         const cat = document.createElement("img");
         cat.setAttribute("id", "cat");
-        cat.setAttribute("src", chrome.runtime.getURL("chrome-extension://odblkedobmflicmcmjhceopbafgoikpj/assets/images/cat-nyan-cat.gif"));
+        cat.setAttribute("src", chrome.runtime.getURL(imgSrc));
         //cat.src = chrome.runtime.getURL("./assets/images/cat-nyan-cat.gif");
         document.body.appendChild(cat);
     }
+}
+
+chrome.action.onClicked.addListener((tab) => {
+    const catSrc = "/assets/images/cat-nyan-cat.gif";
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: appendCat,
+        args: [catSrc]
+    })
 })
 
