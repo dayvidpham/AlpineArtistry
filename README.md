@@ -10,11 +10,12 @@ Mountain Madness 2024
 
 ## Setup and Run
 
-1. Navigate to the following URL in Google Chrome: `chrome://extensions`
-2. Press the "Load unpacked" button near the top left
-3. Select this directory in the file selector window that opens
-4. Pin the extension onto your extension bar.
-5. Go to your favourite site.
-6. Click the extension in the extension bar!
+1. Navigate to the following URL in Google Chrome: `chrome://extensions`.
+2. In the top-right, make sure the toggle for "Developer mode" is enabled.
+3. In the top left, press the "Load unpacked" button.
+4. Select the directory containing this repo in the file selector pane that opens.
+5. Pin the extension onto your extension bar.
+6. Go to your favourite site.
+7. Click the extension in the extension bar!
 
 
