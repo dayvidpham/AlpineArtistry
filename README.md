@@ -18,6 +18,16 @@ Mountain Madness 2024
 6. Go to your favourite site.
 7. Click the extension in the extension bar!
 
+## Features
+
+* Give you a new perspective across ALL Chrome windows!
+* Change the background color and text color!
+* Motivational cat coach for when you're idle and goofing around!!
+* Click the extension icon for ...
+  * ... access to a GUI pane that allows you to change the background color and text color!
+  * ....... MEOWing sounds!!
+  * ............ FLYING CATS!!!
+
 ## Video Installation and Demo
 
 Link to the video showing how to install and run the extension, with all of its features!  
