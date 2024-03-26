@@ -18,4 +18,9 @@ Mountain Madness 2024
 6. Go to your favourite site.
 7. Click the extension in the extension bar!
 
+## Video Installation and Demo
+
+Link to the video showing how to install and run the extension, with all of its features!  
+
+[![Watch the video](https://img.youtube.com/vi/HKdkGh_ce-4/maxresdefault.jpg)](https://youtu.be/HKdkGh_ce-4)
 
