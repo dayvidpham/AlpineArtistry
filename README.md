@@ -32,9 +32,10 @@ Mountain Madness 2024
 
 Link to the video showing how to install and run the extension, with all of its features!  
 
-[![Watch the video](https://img.youtube.com/vi/HKdkGh_ce-4/maxresdefault.jpg)](https://youtu.be/HKdkGh_ce-4)
+[![Watch the video](http://i3.ytimg.com/vi/HKdkGh_ce-4/hqdefault.jpg)](https://youtu.be/HKdkGh_ce-4)
 
 In case the YouTube link doesn't work:
 
-<video src="./submission/demo-video.mp4"></video>
+https://github.com/dayvidpham/AlpineArtistry/assets/22456875/ddb554ba-5c1b-4936-93d5-b5cece81671b
 
+In case THAT doesn't work, the video can be found in the repo at the [`submissions/demo-video.mp4`](submission/demo-video.mp4) path.
