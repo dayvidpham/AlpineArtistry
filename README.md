@@ -24,3 +24,7 @@ Link to the video showing how to install and run the extension, with all of its 
 
 [![Watch the video](https://img.youtube.com/vi/HKdkGh_ce-4/maxresdefault.jpg)](https://youtu.be/HKdkGh_ce-4)
 
+In case the YouTube link doesn't work:
+
+<video src="./submission/demo-video.mp4"></video>
+
